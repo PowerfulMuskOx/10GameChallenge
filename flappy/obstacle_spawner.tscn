@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://drgsf7ulr2o4r"]
+
+[ext_resource type="Script" path="res://obstacle_spawner.gd" id="1_cprcv"]
+
+[node name="ObstacleSpawner" type="Node"]
+script = ExtResource("1_cprcv")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.0

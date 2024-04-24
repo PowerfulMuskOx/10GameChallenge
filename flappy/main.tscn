@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6ynkospve1oh"]
+
+[ext_resource type="Script" path="res://GameManager.gd" id="1_va8ls"]
+[ext_resource type="Texture2D" uid="uid://bns87ghbmyw34" path="res://art/background.png" id="1_ve84a"]
+[ext_resource type="PackedScene" uid="uid://pfys38nu7g0" path="res://player.tscn" id="2_sssux"]
+[ext_resource type="PackedScene" uid="uid://cyb7pjdjxc0oj" path="res://ground.tscn" id="3_w6ea7"]
+[ext_resource type="PackedScene" uid="uid://drgsf7ulr2o4r" path="res://obstacle_spawner.tscn" id="4_voti5"]
+[ext_resource type="PackedScene" uid="uid://blolb33gnug70" path="res://fade.tscn" id="6_74v2m"]
+[ext_resource type="PackedScene" uid="uid://dp5dh383rx41q" path="res://ui.tscn" id="7_p66mj"]
+
+[node name="Main" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_va8ls")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_ve84a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Ground" parent="." instance=ExtResource("3_w6ea7")]
+position = Vector2(0, 317)
+
+[node name="ObstacleSpawner" parent="." instance=ExtResource("4_voti5")]
+
+[node name="Player" parent="." instance=ExtResource("2_sssux")]
+
+[node name="Fade" parent="." instance=ExtResource("6_74v2m")]
+
+[node name="UI" parent="." instance=ExtResource("7_p66mj")]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://blolb33gnug70"]
+
+[ext_resource type="Script" path="res://Fade.gd" id="1_cnra1"]
+
+[sub_resource type="Animation" id="Animation_tm5a7"]
+resource_name = "fade"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7wc5"]
+_data = {
+"fade": SubResource("Animation_tm5a7")
+}
+
+[node name="Fade" type="Node"]
+script = ExtResource("1_cnra1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -240.0
+offset_top = -360.0
+offset_right = 240.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n7wc5")
+}

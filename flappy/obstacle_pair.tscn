@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dksim18g1erh2"]
+
+[ext_resource type="Script" path="res://obstacle_pair.gd" id="1_oh6of"]
+[ext_resource type="Texture2D" uid="uid://dutrwjt8b2808" path="res://art/pipe-green.png" id="2_50yfq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_reqce"]
+size = Vector2(48, 795)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35mxf"]
+size = Vector2(46, 796)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xewk"]
+size = Vector2(16, 233)
+
+[node name="ObstaclePair" type="Node2D"]
+script = ExtResource("1_oh6of")
+
+[node name="TopObst" type="Area2D" parent="."]
+position = Vector2(0, -500)
+
+[node name="Sprite2D" type="Sprite2D" parent="TopObst"]
+position = Vector2(44, 343)
+rotation = 3.14159
+scale = Vector2(0.977829, 1.66007)
+texture = ExtResource("2_50yfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopObst"]
+position = Vector2(44, 341.5)
+shape = SubResource("RectangleShape2D_reqce")
+
+[node name="BottomObst" type="Area2D" parent="."]
+position = Vector2(2, 500)
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomObst"]
+position = Vector2(46, 376)
+scale = Vector2(1, 1.66406)
+texture = ExtResource("2_50yfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomObst"]
+position = Vector2(45, 377)
+shape = SubResource("RectangleShape2D_35mxf")
+
+[node name="Scored" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scored"]
+position = Vector2(83, 357.5)
+shape = SubResource("RectangleShape2D_2xewk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="TopObst" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="BottomObst" to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Scored" to="." method="_on_point_scored"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
