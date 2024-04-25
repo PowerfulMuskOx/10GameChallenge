@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://dt6b1aal0ih4s"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_387id"]
+[ext_resource type="Texture2D" uid="uid://m3qfs6rt25fv" path="res://art/gold.png" id="1_jrdd6"]
+[ext_resource type="Texture2D" uid="uid://q181w57tjwrp" path="res://art/green.png" id="2_yd3fm"]
+[ext_resource type="Texture2D" uid="uid://bl7mmgekxpdm2" path="res://art/pillar.png" id="4_6dqxr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evhlc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jrdd6")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yd3fm")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6dqxr")
+}],
+"loop": true,
+"name": &"pillar",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgwjn"]
+size = Vector2(525, 880)
+
+[node name="Enemy" type="Area2D"]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_387id")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(800, 0)
+sprite_frames = SubResource("SpriteFrames_evhlc")
+animation = &"pillar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(630, -60)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_sgwjn")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

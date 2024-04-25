@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://cx6f14e4folho"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_ck4tj"]
+[ext_resource type="Texture2D" uid="uid://fbno1v3xmdil" path="res://art/standing.png" id="2_0biiw"]
+[ext_resource type="Texture2D" uid="uid://c3fphdil38kr7" path="res://art/dead.png" id="2_ndkwr"]
+[ext_resource type="Texture2D" uid="uid://31jm4tr5if2k" path="res://art/flying.png" id="3_l3gjr"]
+[ext_resource type="Texture2D" uid="uid://byt6itgfvq3qb" path="res://art/walking_2.png" id="4_sfpxy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5x1g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ndkwr")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0biiw")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_l3gjr")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0biiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sfpxy")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v821p"]
+size = Vector2(73, 100)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_ck4tj")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_e5x1g")
+animation = &"walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11.5, -1)
+shape = SubResource("RectangleShape2D_v821p")

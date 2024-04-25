@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://bom3svt17ap17"]
+
+[ext_resource type="PackedScene" uid="uid://cx6f14e4folho" path="res://player.tscn" id="1_3n7o8"]
+[ext_resource type="Texture2D" uid="uid://blevxm1d1febf" path="res://art/background.png" id="1_ds2on"]
+[ext_resource type="Script" path="res://main.gd" id="1_jm5lu"]
+[ext_resource type="PackedScene" uid="uid://doc7jkgdkinet" path="res://ground.tscn" id="3_mpcsr"]
+[ext_resource type="PackedScene" uid="uid://c3ayn2qiom1km" path="res://ceiling.tscn" id="4_erwxv"]
+[ext_resource type="PackedScene" uid="uid://7ox70yhxflqe" path="res://enemy_spawner.tscn" id="6_j3t5x"]
+[ext_resource type="PackedScene" uid="uid://dt6b1aal0ih4s" path="res://enemy.tscn" id="7_81b26"]
+[ext_resource type="PackedScene" uid="uid://bd3o63y7mctql" path="res://ui.tscn" id="8_twjpt"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_jm5lu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(6, 0)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(355, -114)
+texture = ExtResource("1_ds2on")
+
+[node name="Ground" parent="." instance=ExtResource("3_mpcsr")]
+position = Vector2(-957, 497)
+
+[node name="Player" parent="." groups=["Persist"] instance=ExtResource("1_3n7o8")]
+position = Vector2(29, 274)
+
+[node name="Ceiling" parent="." instance=ExtResource("4_erwxv")]
+position = Vector2(-493, -348)
+
+[node name="Enemy" parent="." instance=ExtResource("7_81b26")]
+visible = false
+position = Vector2(430, 264)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("6_j3t5x")]
+
+[node name="SpawnPosition" type="Area2D" parent="."]
+position = Vector2(453, 267)
+
+[node name="PointsTimer" type="Timer" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("8_twjpt")]
+
+[connection signal="timeout" from="PointsTimer" to="." method="_on_points_timer_timeout"]
