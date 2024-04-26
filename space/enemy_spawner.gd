@@ -2,6 +2,8 @@ extends Node2D
 
 class_name EnemySpawner
 
+signal all_enemies_dead
+
 var enemy_scene = preload("res://enemy.tscn")
 const ROWS = 3
 const COLUMNS = 7
@@ -14,8 +16,17 @@ const INVADERS_POSITION_X_INCREMENT = 2
 
 var movement_direction = 1
 
+var enemies_spawned = false
+
+var enemies 
+
 func _ready():
 	pass
+	
+func _process(delta):
+	enemies = self.get_child_count()
+	if self.get_child_count() == 0 && enemies_spawned:
+		all_enemies_dead.emit()
 			
 func create_spawner(): 
 	var enemy_1 = preload("res://resources/enemy_1.tres")
@@ -42,6 +53,8 @@ func create_spawner():
 			var spawn_position = Vector2(x, y)
 			
 			spawn_enemy(enemy_config, spawn_position)	
+	
+	enemies_spawned = true		
 	
 func spawn_enemy(enemy_config, spawn_position: Vector2):
 	var enemy = enemy_scene.instantiate()

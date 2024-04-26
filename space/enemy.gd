@@ -24,7 +24,6 @@ func _ready():
 	shoot_timer.start()
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if !ray_cast.is_colliding():
 		should_shoot = true

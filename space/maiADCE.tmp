@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnanr30ov83vp"]
+
+[ext_resource type="Texture2D" uid="uid://ch2dqxdonv5rs" path="res://art/space2.jpg" id="1_q305g"]
+[ext_resource type="Script" path="res://main.gd" id="1_syb20"]
+[ext_resource type="PackedScene" uid="uid://cphivi63vyw7j" path="res://ship.tscn" id="2_psxan"]
+[ext_resource type="PackedScene" uid="uid://dfo8q7vxhac7m" path="res://enemy_spawner.tscn" id="4_hko5u"]
+[ext_resource type="PackedScene" uid="uid://xy1ebmhqpsmo" path="res://ui.tscn" id="5_pk46j"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_syb20")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(574.5, 323)
+scale = Vector2(0.562988, 0.423177)
+texture = ExtResource("1_q305g")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 325)
+
+[node name="Ship" parent="." groups=["end"] instance=ExtResource("2_psxan")]
+position = Vector2(577, 571)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_hko5u")]
+position = Vector2(573, 281)
+
+[node name="EnemyMoveTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="UI" parent="." instance=ExtResource("5_pk46j")]
+
+[connection signal="timeout" from="EnemyMoveTimer" to="." method="_on_enemy_move_timer_timeout"]

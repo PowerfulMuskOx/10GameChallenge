@@ -46,6 +46,7 @@ func game_over():
 	
 func explode():
 	allow_moving_input = false
+	allow_shoot_input = false
 	sprite.play("explosion")
 	await sprite.animation_finished
 	
