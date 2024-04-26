@@ -5,13 +5,14 @@ signal ball_hit
 
 @onready var sprite = $Sprite2D
 
-var speed = 2500
+var speed = 150
+var position_x
 
 func _ready():
-	pass
+	position_x = position.x
 
 func _physics_process(delta):
-	position += transform.y * speed * delta
+	position.y += speed * delta
 	
 func explode():
 	speed = 0

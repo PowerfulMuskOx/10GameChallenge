@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b135ui6ovihs6"
-path="res://.godot/imported/baby_ .png-a49ecf58797c7b1b14677ed774e78859.ctex"
+uid="uid://dcb7em38txicu"
+path="res://.godot/imported/game_over_new.png-4458eca92b1a3f9af577658b55f7be31.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/baby_ .png"
-dest_files=["res://.godot/imported/baby_ .png-a49ecf58797c7b1b14677ed774e78859.ctex"]
+source_file="res://art/game_over_new.png"
+dest_files=["res://.godot/imported/game_over_new.png-4458eca92b1a3f9af577658b55f7be31.ctex"]
 
 [params]
 

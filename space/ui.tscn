@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui.gd" id="1_5wnat"]
 [ext_resource type="Texture2D" uid="uid://cku2uvuxjdf80" path="res://art/lettuce_small.png" id="1_f8i23"]
-[ext_resource type="Texture2D" uid="uid://c5lf6hcgdekg3" path="res://art/game_over.png" id="2_g0unm"]
+[ext_resource type="Texture2D" uid="uid://dcb7em38txicu" path="res://art/game_over_new.png" id="3_5ts4f"]
 
 [sub_resource type="GDScript" id="GDScript_rjoxw"]
 script/source = "extends GridContainer
@@ -67,26 +67,27 @@ texture = ExtResource("1_f8i23")
 
 [node name="BoxContainer" type="GridContainer" parent="."]
 visible = false
-offset_left = 473.0
-offset_top = 176.0
-offset_right = 673.0
-offset_bottom = 380.0
+offset_left = 447.0
+offset_top = 57.0
+offset_right = 845.0
+offset_bottom = 429.0
 script = SubResource("GDScript_rjoxw")
 
 [node name="TextureRect" type="TextureRect" parent="BoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_g0unm")
+texture = ExtResource("3_5ts4f")
 
 [node name="Panel" type="Panel" parent="BoxContainer"]
 layout_mode = 2
 
 [node name="Button" type="Button" parent="BoxContainer/Panel"]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 6.0
-offset_right = 155.0
-offset_bottom = 56.0
+offset_left = 62.0
+offset_top = 8.0
+offset_right = 215.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 30
-text = "Re-start"
+text = "Play again
+"
 
 [connection signal="pressed" from="BoxContainer/Panel/Button" to="." method="_on_button_pressed"]

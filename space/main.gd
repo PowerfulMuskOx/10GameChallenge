@@ -2,8 +2,9 @@ extends Node
 
 @onready var ship = $Ship
 @onready var enemy_spawner = $EnemySpawner
-@onready var enemy_move_timer = $EnemyMoveTimer
 @onready var ui = $UI
+@onready var jimmy_timer = $JimmyTimer
+@onready var jimmy_spawn_position = $JimmySpawnPosition
 
 var save_file = "res://save.txt"
 var points = 0
@@ -21,7 +22,9 @@ func _ready():
 	ui.update_high_score(highscore)
 	ship.ship_hit_signal.connect(ship_hit)
 	enemy_spawner.create_spawner()
-	enemy_spawner.all_enemies_dead.connect(game_over)
+	enemy_spawner.all_enemies_dead.connect(victory)
+	enemy_spawner.jimmy_killed_signal.connect(increase_points)
+	jimmy_timer.start()
 	var children = enemy_spawner.get_children()
 	for child in children:
 		if child.is_in_group("enemy"):
@@ -30,6 +33,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
 	if lives < 1:
 		game_over()
 	
@@ -42,12 +46,20 @@ func ship_hit():
 	ui.update_lives(lives)	
 
 func victory():
-	game_over()
+	if(lives > 0):
+		ship.victory()
+		enemy_spawner.game_over()
+		ui.on_victory()
+		jimmy_timer.stop()
+		if(points > highscore):
+			update_high_score()
+		save_data()
 	
 func game_over():
 	ship.game_over()
 	enemy_spawner.game_over()
 	ui.on_game_over()
+	jimmy_timer.stop()
 	if(points > highscore):
 		update_high_score()
 	save_data()
@@ -64,3 +76,7 @@ func _on_enemy_move_timer_timeout():
 func save_data():
 	var file = FileAccess.open(save_file, FileAccess.WRITE)
 	file.store_string(str(highscore))		
+	
+func _on_jimmy_timer_timeout():
+	enemy_spawner.spawn_jimmy(jimmy_spawn_position.global_position)	
+	

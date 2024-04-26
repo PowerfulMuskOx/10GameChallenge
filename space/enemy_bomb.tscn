@@ -30,8 +30,9 @@ animations = [{
 size = Vector2(950, 975)
 
 [node name="EnemyBomb" type="Area2D" groups=["enemies"]]
+top_level = true
 position = Vector2(564, 331)
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.03, 0.03)
 script = ExtResource("1_kj1h7")
 metadata/_edit_group_ = true
 

@@ -34,15 +34,19 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
 	if velocity.x < 0:
-		sprite.flip_h = true
+		scale.x = -1
 	else:
-		sprite.flip_h = false
+		scale.x = 1
 		
 func ship_hit():
 	ship_hit_signal.emit()
 		
 func game_over():
-	explode()		
+	explode()
+	
+func victory():
+	allow_moving_input = false
+	allow_shoot_input = false		
 	
 func explode():
 	allow_moving_input = false

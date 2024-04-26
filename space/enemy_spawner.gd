@@ -3,8 +3,10 @@ extends Node2D
 class_name EnemySpawner
 
 signal all_enemies_dead
+signal jimmy_killed_signal
 
 var enemy_scene = preload("res://enemy.tscn")
+var jimmy_scene = preload("res://jimmy.tscn")
 const ROWS = 3
 const COLUMNS = 7
 const HORIZON_SPACING = 1
@@ -59,9 +61,20 @@ func create_spawner():
 func spawn_enemy(enemy_config, spawn_position: Vector2):
 	var enemy = enemy_scene.instantiate()
 	enemy.config = enemy_config
-	enemy.start_position = spawn_position
 	enemy.global_position = spawn_position
 	add_child(enemy)
+	
+func spawn_jimmy(pos):
+	var jimmy = jimmy_scene.instantiate()
+	var start = pos
+	start.x = pos.x - 500
+	start.y = pos.y - 200
+	jimmy.position = start
+	add_child(jimmy)
+	jimmy.jimmy_killed.connect(jimmy_killed)
+	
+func jimmy_killed(points):
+	jimmy_killed_signal.emit(points)		
 	
 func game_over():
 	for n in self.get_children():

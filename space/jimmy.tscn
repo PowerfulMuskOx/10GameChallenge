@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://02laknjqlhtq"]
+
+[ext_resource type="Texture2D" uid="uid://cui1ia5aax1fu" path="res://art/jimmy.png" id="1_1le12"]
+[ext_resource type="Script" path="res://jimmy.gd" id="1_6ssnf"]
+[ext_resource type="Texture2D" uid="uid://bio8jcsl261co" path="res://art/explosion.png" id="2_aa7hq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rbgig"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1le12")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aa7hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_aa7hq")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lym3r"]
+size = Vector2(232, 344)
+
+[node name="Jimmy" type="Area2D"]
+position = Vector2(174, 200)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_6ssnf")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rbgig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_lym3r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["enemies", "jimmy"]]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
