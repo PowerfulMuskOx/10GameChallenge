@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cphivi63vyw7j"]
+
+[ext_resource type="Script" path="res://ship.gd" id="1_hmbwe"]
+[ext_resource type="Texture2D" uid="uid://dbgaxqlt43wex" path="res://art/taco.png" id="1_p54jo"]
+[ext_resource type="Texture2D" uid="uid://bio8jcsl261co" path="res://art/explosion.png" id="3_dipt7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28v63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p54jo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_dipt7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dipt7")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_05qvy"]
+radius = 27.6095
+height = 113.548
+
+[node name="Ship" type="Area2D" groups=["friendly", "ship"]]
+position = Vector2(562, 509)
+script = ExtResource("1_hmbwe")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_28v63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, -2)
+rotation = 0.71733
+shape = SubResource("CapsuleShape2D_05qvy")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

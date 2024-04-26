@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://duodpg3b2jsc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgapw"]
+size = Vector2(989, 300)
+
+[node name="SpawnArea" type="CollisionShape2D"]
+position = Vector2(571, 296)
+shape = SubResource("RectangleShape2D_pgapw")

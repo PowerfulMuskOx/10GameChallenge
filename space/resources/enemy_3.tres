@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://00g325lxta8g"]
+
+[ext_resource type="Script" path="res://resources/enemy_config.gd" id="1_7tnhj"]
+
+[resource]
+script = ExtResource("1_7tnhj")
+sprite = "red"
+width = 100
+points = 20
+distance_to_end = 773

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgk3sdapm03dc"]
+
+[ext_resource type="Script" path="res://EnemyLine.gd" id="1_ipacd"]
+[ext_resource type="PackedScene" uid="uid://duodpg3b2jsc8" path="res://spawn_area.tscn" id="2_7ehtc"]
+
+[node name="EnemyLine" type="Node2D"]
+script = ExtResource("1_ipacd")
+
+[node name="SpawnArea" parent="." instance=ExtResource("2_7ehtc")]
